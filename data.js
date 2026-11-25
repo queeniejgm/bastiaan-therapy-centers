@@ -37,12 +37,14 @@ const CENTERS = [
     contact: "0927 471 3377",
     links: [{ label: "Facebook", url: "https://www.facebook.com/lilscoutsph" }],
     rates: { otAssessment: 3200, otSession: 1450, stAssessment: 3200, stSession: 1450 },
+    pwdRates: { otAssessment: 3200, otSession: 1450, stAssessment: 3200, stSession: 1450 }, // no separate PWD discount; same rate
     schedule: "Open OT & ST slots — they'll send available times",
     packages: [
       "Security deposit: ₱3,000 (new students)",
     ],
     notes: [
       { q: "Initial evaluation", a: "₱3,200 for new students (one fee quoted; not split by OT/ST)." },
+      { q: "PWD rate", a: "No separate PWD discount — same rate applies." },
       { q: "Session length", a: "1 hour (OT and ST)." },
       { q: "Therapists", a: "All PRC-licensed, experienced in pediatric setting." },
       { q: "Recommended frequency", a: "2x a week each for OT and ST (minimum)." },
