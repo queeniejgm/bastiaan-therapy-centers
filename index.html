@@ -66,6 +66,11 @@
   <section class="summary" id="summary"></section>
 
   <div class="controls">
+    <label for="mode">Rates</label>
+    <select id="mode">
+      <option value="regular">Regular</option>
+      <option value="pwd">With PWD ID</option>
+    </select>
     <label for="sort">Sort by</label>
     <select id="sort">
       <option value="name">Name</option>
@@ -104,16 +109,23 @@
   const money = n => n == null ? "—" : CURRENCY + Number(n).toLocaleString();
   const mapsLink = c => c.mapsUrl || "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(c.address || c.name);
 
+  const modeEl = document.getElementById("mode");
+  // In PWD mode, use the PWD rate if the center has one, else fall back to regular.
+  const rate = (c, k) => modeEl.value === "pwd" ? (c.pwdRates?.[k] ?? c.rates?.[k]) : c.rates?.[k];
+  const isFallback = (c, k) => modeEl.value === "pwd" && c.pwdRates?.[k] == null && c.rates?.[k] != null;
+
   // Lowest value per rate (ignores missing)
   const best = {};
-  for (const [k] of RATES) {
-    const vals = CENTERS.map(c => c.rates?.[k]).filter(v => v != null);
-    best[k] = vals.length ? Math.min(...vals) : null;
+  function computeBest() {
+    for (const [k] of RATES) {
+      const vals = CENTERS.map(c => rate(c, k)).filter(v => v != null);
+      best[k] = vals.length ? Math.min(...vals) : null;
+    }
   }
 
   function renderSummary() {
     document.getElementById("summary").innerHTML = RATES.map(([k, label]) => {
-      const who = CENTERS.filter(c => best[k] != null && c.rates?.[k] === best[k]).map(c => esc(c.name)).join(", ");
+      const who = CENTERS.filter(c => best[k] != null && rate(c, k) === best[k]).map(c => esc(c.name)).join(", ");
       return `<div class="tile"><div class="label">Cheapest ${label}</div>
         <div class="price">${money(best[k])}</div><div class="who">${who || '<span class="muted">No data yet</span>'}</div></div>`;
     }).join("");
@@ -123,7 +135,7 @@
     const key = document.getElementById("sort").value;
     const list = [...CENTERS].sort((a, b) => {
       if (key === "name") return a.name.localeCompare(b.name);
-      const x = a.rates?.[key], y = b.rates?.[key];
+      const x = rate(a, key), y = rate(b, key);
       return (x ?? Infinity) - (y ?? Infinity);
     });
 
@@ -135,22 +147,31 @@
 
     tbody.innerHTML = list.map(c => {
       const rateCells = RATES.map(([k, label]) => {
-        const v = c.rates?.[k];
+        const v = rate(c, k);
         const isBest = v != null && v === best[k];
-        return `<td class="num${isBest ? " best" : ""}" data-label="${label}">${money(v)}</td>`;
+        const tag = isFallback(c, k) ? ' <small class="muted">(regular)</small>' : "";
+        return `<td class="num${isBest ? " best" : ""}" data-label="${label}"><span>${money(v)}${tag}</span></td>`;
       }).join("");
 
       const notes = (c.notes || []).length
-        ? `<details><summary>Questions &amp; answers (${c.notes.length})</summary><ul class="qa">${
+        ? `<details><summary>Details (${c.notes.length})</summary><ul class="qa">${
             c.notes.map(n => `<li><b>${esc(n.q)}</b>${esc(n.a)}</li>`).join("")}</ul></details>`
         : "";
+      const packages = (c.packages || []).length
+        ? `<details><summary>Packages &amp; other rates (${c.packages.length})</summary><ul class="qa">${
+            c.packages.map(p => `<li>${esc(p)}</li>`).join("")}</ul></details>`
+        : "";
+      const links = (c.links || []).map(l =>
+        `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join(" · ");
 
       return `<tr>
         <td class="name-cell">
           <div class="name">${esc(c.name)}</div>
           <a href="${esc(mapsLink(c))}" target="_blank" rel="noopener">📍 ${esc(c.address || "Open in Google Maps")}</a>
           ${c.contact ? `<div class="muted">${esc(c.contact)}</div>` : ""}
+          ${links ? `<div>${links}</div>` : ""}
           ${c.visited ? `<div class="muted">Visited ${esc(c.visited)}</div>` : ""}
+          ${packages}
           ${notes}
         </td>
         ${rateCells}
@@ -159,9 +180,10 @@
     }).join("");
   }
 
+  function render() { computeBest(); renderSummary(); renderRows(); }
   document.getElementById("sort").addEventListener("change", renderRows);
-  renderSummary();
-  renderRows();
+  modeEl.addEventListener("change", render);
+  render();
 </script>
 </body>
 </html>
