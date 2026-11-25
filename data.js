@@ -52,4 +52,27 @@ const CENTERS = [
       { q: "Enrollment", a: "Process and requirements explained when you visit the center." },
     ],
   },
+  {
+    name: "Skills at Play Therapy Center (SPTC)",
+    address: "27 J Aquino Cruz Street, Quezon City, 1115",
+    contact: "0961 767 8221",
+    links: [{ label: "Facebook", url: "https://www.facebook.com/sptcqc" }],
+    rates: { otAssessment: 4500, otSession: 1400, stAssessment: 4500, stSession: 1750 },
+    pwdRates: { otAssessment: 3500, otSession: 1100, stAssessment: 3500, stSession: 1250 },
+    schedule: "Open: Tue AM & PM, Wed AM",
+    packages: [
+      "PT session: ₱1,400 regular / ₱1,100 PWD (their message listed both as \"PWD\")",
+      "Down payment: ₱1,000 to reserve",
+    ],
+    notes: [
+      { q: "Initial evaluation", a: "One fee (not split by OT/ST). 1hr guardian interview, therapist observation, goal setting with caregiver. Includes individualized notebook with caregiver leaflets." },
+      { q: "Session", a: "1 hour, one-on-one, with caregiver education for follow-ups at home." },
+      { q: "Therapists", a: "Licensed; neuroaffirming, strengths-based, evidence-based practice." },
+      { q: "Recommended frequency", a: "Start 2x a week, then check if 3x a week." },
+      { q: "OT + ST together?", a: "Yes, can be done together (early intervention)." },
+      { q: "Parent involvement", a: "Parent coaching, OT notebook to track progress at home, Viber group chat for updates." },
+      { q: "Enrollment", a: "Valid ID of guardian + ₱1,000 down payment. Book via Messenger or Viber." },
+      { q: "Facility", a: "3-storey center with study space, play space and kitchen." },
+    ],
+  },
 ];
