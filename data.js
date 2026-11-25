@@ -31,4 +31,23 @@ const CENTERS = [
       { q: "Cancellation", a: "Fee applies if cancelled less than 3 hours before the appointment." },
     ],
   },
+  {
+    name: "Li'l Scouts Therapy Center",
+    address: "", // not found online yet; map link searches by name
+    rates: { otAssessment: 3200, otSession: 1450, stAssessment: 3200, stSession: 1450 },
+    schedule: "Open OT & ST slots — they'll send available times",
+    packages: [
+      "Security deposit: ₱3,000 (new students)",
+    ],
+    notes: [
+      { q: "Initial evaluation", a: "₱3,200 for new students (one fee quoted; not split by OT/ST)." },
+      { q: "Session length", a: "1 hour (OT and ST)." },
+      { q: "Therapists", a: "All PRC-licensed, experienced in pediatric setting." },
+      { q: "Recommended frequency", a: "2x a week each for OT and ST (minimum)." },
+      { q: "OT + ST together?", a: "Advised on different days, since it's his first time in therapy." },
+      { q: "Parent involvement", a: "Parents not allowed inside the therapy area. 10–15 min feedback before the end of each session; you can ask for home instructions." },
+      { q: "Progress report", a: "Request it a month before your return to the dev-ped." },
+      { q: "Enrollment", a: "Process and requirements explained when you visit the center." },
+    ],
+  },
 ];
