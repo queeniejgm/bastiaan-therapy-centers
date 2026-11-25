@@ -79,4 +79,23 @@ const CENTERS = [
       { q: "In business since", a: "2022 (per a third-party business directory, unverified)." },
     ],
   },
+  {
+    name: "THINKids QC",
+    address: "", // not found online yet; map link searches by name
+    contact: "0917 508 0655",
+    links: [{ label: "Facebook", url: "https://www.facebook.com/THINKidsQC" }],
+    rates: { otAssessment: 4375, otSession: 1875, stAssessment: 4375, stSession: 1875 },
+    pwdRates: { otAssessment: 3500, otSession: 1500, stAssessment: 3500, stSession: 1500 },
+    schedule: "",
+    packages: [
+      "Formal report: ₱2,062.50 regular / ₱1,650 PWD",
+    ],
+    notes: [
+      { q: "Rates", a: "Senior Consultant rates. One rate sheet (not split by OT/ST). Discount applies with PWD ID or valid doctor's referral." },
+      { q: "Initial evaluation", a: "2 hours, or two 1-hour sessions." },
+      { q: "Session length", a: "1 hour." },
+      { q: "Junior Consultants", a: "Currently none available for face-to-face." },
+      { q: "In business", a: "15 years." },
+    ],
+  },
 ];
