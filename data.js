@@ -11,7 +11,7 @@ const CENTERS = [
     address: "172 D. Tuazon Street, Sta. Mesa Heights, Quezon City, 1114",
     contact: "0917 518 8807 · aimtherapycenter88@gmail.com",
     links: [{ label: "Facebook", url: "https://www.facebook.com/aimtherapycenter" }],
-    rates: { otAssessment: 3499, otSession: 1499, stAssessment: null, stSession: null },
+    rates: { otAssessment: 3499, otSession: 1499, stAssessment: null, stSession: 1499 },
     pwdRates: { otAssessment: 3299, otSession: 1399, stAssessment: 3299, stSession: 1399 },
     schedule: "Mon–Sat 8:30am–5:30pm",
     packages: [
@@ -23,7 +23,7 @@ const CENTERS = [
       "PWD: SPED ₱999, specialized therapy (SOS, PROMPT, dysphagia) ₱1,599, specialized assessment ₱3,499, progress report ₱799",
     ],
     notes: [
-      { q: "ST regular rates", a: "Not quoted yet. They said they also offer ST sessions." },
+      { q: "ST assessment (regular)", a: "Not quoted yet. ST session is the same price as OT." },
       { q: "Next opening", a: "OT initial assessment, Fri Nov 27, 9:30am." },
       { q: "Booking", a: "50% downpayment required to reserve the assessment." },
       { q: "Therapists", a: "All licensed and experienced." },
