@@ -29,6 +29,7 @@ const CENTERS = [
       { q: "Therapists", a: "All licensed and experienced." },
       { q: "Session frequency", a: "Decided after the assessment, based on the therapist's recommendation." },
       { q: "Cancellation", a: "Fee applies if cancelled less than 3 hours before the appointment." },
+      { q: "In business since", a: "About 1 year (2025)." },
     ],
   },
   {
