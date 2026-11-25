@@ -33,7 +33,8 @@ const CENTERS = [
   },
   {
     name: "Li'l Scouts Therapy Center",
-    address: "", // not found online yet; map link searches by name
+    address: "244 Sct. Chuatoco St., Roxas District, Quezon City, 1103",
+    contact: "0927 471 3377",
     links: [{ label: "Facebook", url: "https://www.facebook.com/lilscoutsph" }],
     rates: { otAssessment: 3200, otSession: 1450, stAssessment: 3200, stSession: 1450 },
     schedule: "Open OT & ST slots — they'll send available times",
