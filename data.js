@@ -75,6 +75,7 @@ const CENTERS = [
       { q: "Parent involvement", a: "Parent coaching, OT notebook to track progress at home, Viber group chat for updates." },
       { q: "Enrollment", a: "Valid ID of guardian + ₱1,000 down payment. Book via Messenger or Viber." },
       { q: "Facility", a: "3-storey center with study space, play space and kitchen." },
+      { q: "In business since", a: "2022 (per a third-party business directory, unverified)." },
     ],
   },
 ];
