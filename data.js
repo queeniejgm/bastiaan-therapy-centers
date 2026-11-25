@@ -106,7 +106,7 @@ const CENTERS = [
     links: [{ label: "Facebook", url: "https://www.facebook.com/TheraBright/" }],
     rates: { otAssessment: 4150, otSession: 1400, stAssessment: 4150, stSession: 1400 },
     pwdRates: { otAssessment: 4150, otSession: 1400, stAssessment: 4150, stSession: 1400 },
-    schedule: "",
+    schedule: "OT: Mon 11:30–12:30 & Tue 12:00–1:00 (same therapist); Wed 3:00–4:00, Thu 1:00–2:00, Fri 11:30–12:30 (same therapist). ST: no slots yet.",
     notes: [
       { q: "PWD rate", a: "Sessions ₱1,400 with PWD ID. Without it, still ₱1,400 as long as the PWD ID is shown within 2 months. Assessment has no PWD discount." },
       { q: "Landmarks", a: "Near Tomas Morato McDo, Office Warehouse, Zenshou. No longer in Thompson's Square." },
