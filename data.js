@@ -1,6 +1,7 @@
 // Edit this file to add/update centers.
 // Rates: use a number, or null if unknown / not quoted.
 // rates = regular rates, pwdRates = rates with PWD ID (optional).
+// travel: straight-line km + estimated midday drive time from home and from school.
 // address: used to open Google Maps. mapsUrl (optional) overrides it with an exact pin link.
 
 const CURRENCY = "₱";
@@ -8,6 +9,7 @@ const CURRENCY = "₱";
 const CENTERS = [
   {
     name: "AIM (Aspire in Motion) Play and Therapy Center",
+    travel: { home: { km: 1.9, mins: "10–15" }, school: { km: 6.3, mins: "30–45" } },
     address: "172 D. Tuazon Street, Sta. Mesa Heights, Quezon City, 1114",
     contact: "0917 518 8807 · aimtherapycenter88@gmail.com",
     links: [{ label: "Facebook", url: "https://www.facebook.com/aimtherapycenter" }],
@@ -35,6 +37,7 @@ const CENTERS = [
   },
   {
     name: "Li'l Scouts Therapy Center",
+    travel: { home: { km: 0.9, mins: "5–10" }, school: { km: 4.1, mins: "20–30" } },
     address: "244 Sct. Chuatoco St., Roxas District, Quezon City, 1103",
     contact: "0927 471 3377",
     links: [{ label: "Facebook", url: "https://www.facebook.com/lilscoutsph" }],
@@ -58,6 +61,7 @@ const CENTERS = [
   },
   {
     name: "Skills at Play Therapy Center (SPTC)",
+    travel: { home: { km: 2.0, mins: "10–15" }, school: { km: 7.0, mins: "35–45" } },
     address: "27 J Aquino Cruz Street, Quezon City, 1115",
     contact: "0961 767 8221",
     links: [{ label: "Facebook", url: "https://www.facebook.com/sptcqc" }],
@@ -82,7 +86,8 @@ const CENTERS = [
   },
   {
     name: "THINKids QC",
-    address: "", // not found online yet; map link searches by name
+    travel: { home: { km: 2.0, mins: "10–15" }, school: { km: 3.2, mins: "15–25" } },
+    address: "5 Tomas Morato Avenue, Kamuning, Quezon City, 1103", // from OpenStreetMap; confirm
     contact: "0917 508 0655",
     links: [{ label: "Facebook", url: "https://www.facebook.com/THINKidsQC" }],
     rates: { otAssessment: 4375, otSession: 1875, stAssessment: 4375, stSession: 1875 },
@@ -103,6 +108,7 @@ const CENTERS = [
   },
   {
     name: "TheraBright Occupational and Speech Therapy Center",
+    travel: { home: { km: 1.4, mins: "5–10" }, school: { km: 3.7, mins: "20–30" } },
     address: "34-D Marathon Street, Quezon City",
     mapsUrl: "https://maps.app.goo.gl/i6sE6hSjRe1S4eay6",
     contact: "0945 455 7996 · (02) 7728-7019",

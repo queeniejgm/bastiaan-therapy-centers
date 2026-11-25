@@ -27,6 +27,10 @@
   .tile .price { font-size: 1.4rem; font-weight: 700; color: var(--best-text); }
   .tile .who { font-size: .9rem; }
 
+  h2.section { font-size: 1rem; margin: 0 0 8px; }
+  .summary + h2.section { margin-top: -4px; }
+  .tile .price.blue { color: var(--accent); }
+  .travel-line { white-space: nowrap; }
   .controls { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; flex-wrap: wrap; }
   select { font: inherit; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--card); color: var(--text); }
 
@@ -63,7 +67,11 @@
   <h1>Bastiaan's Therapy Centers</h1>
   <p class="sub">Green = cheapest for that rate.</p>
 
+  <h2 class="section">Cheapest</h2>
   <section class="summary" id="summary"></section>
+  <h2 class="section">Most convenient</h2>
+  <p class="sub">Brother's school: 7:00am–11:30am. Distances are straight-line; times are midday driving estimates.</p>
+  <section class="summary" id="travel"></section>
 
   <div class="controls">
     <label for="mode">Rates</label>
@@ -78,6 +86,9 @@
       <option value="otSession">OT session</option>
       <option value="stAssessment">ST assessment</option>
       <option value="stSession">ST session</option>
+      <option value="home">Distance from home</option>
+      <option value="school">Distance from school</option>
+      <option value="both">Home + school distance</option>
     </select>
   </div>
 
@@ -89,6 +100,7 @@
         <th class="num">OT session</th>
         <th class="num">ST assessment</th>
         <th class="num">ST session</th>
+        <th>Travel (est.)</th>
         <th>Schedule</th>
       </tr>
     </thead>
@@ -131,17 +143,40 @@
     }).join("");
   }
 
+  const km = (c, where) => where === "both"
+    ? (c.travel?.home?.km ?? Infinity) + (c.travel?.school?.km ?? Infinity)
+    : (c.travel?.[where]?.km ?? Infinity);
+
+  function renderTravel() {
+    const pick = where => [...CENTERS].sort((a, b) => km(a, where) - km(b, where))[0];
+    const tiles = [
+      ["home", "Closest to home"],
+      ["school", "Closest to school"],
+      ["both", "Best for home + school"],
+    ].map(([where, label]) => {
+      const c = pick(where);
+      if (!c || km(c, where) === Infinity) return `<div class="tile"><div class="label">${label}</div><div class="who muted">No data yet</div></div>`;
+      const detail = where === "both"
+        ? `Home ~${c.travel.home.mins} min · School ~${c.travel.school.mins} min`
+        : `${c.travel[where].km} km · ~${c.travel[where].mins} min`;
+      return `<div class="tile"><div class="label">${label}</div>
+        <div class="price blue">${esc(c.name)}</div><div class="who">${detail}</div></div>`;
+    });
+    document.getElementById("travel").innerHTML = tiles.join("");
+  }
+
   function renderRows() {
     const key = document.getElementById("sort").value;
     const list = [...CENTERS].sort((a, b) => {
       if (key === "name") return a.name.localeCompare(b.name);
+      if (["home", "school", "both"].includes(key)) return km(a, key) - km(b, key);
       const x = rate(a, key), y = rate(b, key);
       return (x ?? Infinity) - (y ?? Infinity);
     });
 
     const tbody = document.getElementById("rows");
     if (!list.length) {
-      tbody.innerHTML = `<tr><td colspan="6" class="empty">No centers added yet.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="7" class="empty">No centers added yet.</td></tr>`;
       return;
     }
 
@@ -175,12 +210,15 @@
           ${notes}
         </td>
         ${rateCells}
+        <td data-label="Travel (est.)">${c.travel ? `
+          <div class="travel-line">🏠 ${c.travel.home.km} km · ~${c.travel.home.mins} min</div>
+          <div class="travel-line">🏫 ${c.travel.school.km} km · ~${c.travel.school.mins} min</div>` : '<span class="muted">—</span>'}</td>
         <td data-label="Schedule">${esc(c.schedule) || '<span class="muted">—</span>'}</td>
       </tr>`;
     }).join("");
   }
 
-  function render() { computeBest(); renderSummary(); renderRows(); }
+  function render() { computeBest(); renderSummary(); renderTravel(); renderRows(); }
   document.getElementById("sort").addEventListener("change", renderRows);
   modeEl.addEventListener("change", render);
   render();
