@@ -98,4 +98,18 @@ const CENTERS = [
       { q: "In business", a: "15 years." },
     ],
   },
+  {
+    name: "TheraBright Occupational and Speech Therapy Center",
+    address: "34-D Marathon Street, Quezon City",
+    mapsUrl: "https://maps.app.goo.gl/i6sE6hSjRe1S4eay6",
+    contact: "0945 455 7996 · (02) 7728-7019",
+    links: [{ label: "Facebook", url: "https://www.facebook.com/TheraBright/" }],
+    rates: { otAssessment: 4150, otSession: 1400, stAssessment: 4150, stSession: 1400 },
+    pwdRates: { otAssessment: 4150, otSession: 1400, stAssessment: 4150, stSession: 1400 },
+    schedule: "",
+    notes: [
+      { q: "PWD rate", a: "Sessions ₱1,400 with PWD ID. Without it, still ₱1,400 as long as the PWD ID is shown within 2 months. Assessment has no PWD discount." },
+      { q: "Landmarks", a: "Near Tomas Morato McDo, Office Warehouse, Zenshou. No longer in Thompson's Square." },
+    ],
+  },
 ];
